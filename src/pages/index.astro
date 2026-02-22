@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
 import { getCollection } from "astro:content";
+import { getTimeToRead } from "../utils/get-time-to-read";
 
 const posts = await getCollection("posts");
 ---
@@ -21,6 +22,7 @@ const posts = await getCollection("posts");
                         href={"/posts/" + post.id}
                         title={post.data.title}
                         description={post.data.description}
+                        timeToReadInMinutes={getTimeToRead(post.rendered?.html)}
                     />
                 ))
             }
