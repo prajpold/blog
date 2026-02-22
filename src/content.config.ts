@@ -6,17 +6,16 @@ const postsCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/posts" }),
   schema: ({ image }) =>
     z.object({
-      // layout: z.string(),
       title: z.string(),
       pubDate: z.date(),
       description: z.string(),
+      category: z.string(),
       author: z.string(),
       image: z.object({
         url: image(),
         alt: z.string(),
         license: z.string(),
       }),
-      // tags: z.array(z.string()),
     }),
 });
 

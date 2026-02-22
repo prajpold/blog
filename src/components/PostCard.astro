@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    title: string;
+    href: string;
+    description: string;
+    category: string;
+    image: {
+        src: ImageMetadata;
+        alt: string;
+    };
+}
+
+const { title, href, description, image, category } = Astro.props;
+---
+
+<div class="w-full border border-surface-hover rounded-xl bg-surface">
+    <div class="grow">
+        <Image {...image} class="bg-clip-border h-full rounded-t-xl" />
+    </div>
+    <div class="p-5 flex flex-col gap-4 grow">
+        <div class="flex justify-between">
+            <p class="text-accent">{category}</p>
+            <p>8 min read</p>
+            <!-- TODO: implement that as a new feature later -->
+        </div>
+        <div class="flex flex-col gap-2">
+            <h2>{title}</h2>
+            <p>{description}</p>
+        </div>
+        <div>
+            <a href={href}>Read More</a>
+        </div>
+    </div>
+</div>

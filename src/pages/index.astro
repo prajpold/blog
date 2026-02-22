@@ -1,8 +1,29 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const pageTitle = "Home Page";
+import PostCard from "../components/PostCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
 ---
 
 <BaseLayout>
-    <h2>Home</h2>
+    <div class="flex flex-col gap-6">
+        <h2 class="text-left text-2xl">Recent articles</h2>
+        <div class="grid lg:grid-cols-2 gap-6">
+            {
+                posts.map((post) => (
+                    <PostCard
+                        image={{
+                            src: post.data.image.url,
+                            alt: post.data.image.alt,
+                        }}
+                        category={post.data.category}
+                        href={"/posts/" + post.id}
+                        title={post.data.title}
+                        description={post.data.description}
+                    />
+                ))
+            }
+        </div>
+    </div>
 </BaseLayout>
