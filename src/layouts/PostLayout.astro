@@ -17,7 +17,13 @@ const { frontmatter } = Astro.props;
             <p><em class="text-tertiary">{frontmatter.description}</em></p>
             <Image src={frontmatter.image.url} alt={frontmatter.image.alt} />
             <p class="text-right text-xs">
-                <em class="text-tertiary">{frontmatter.image.license}</em>
+                <em class="text-tertiary"
+                    >Photo by <a href={frontmatter.image.author.url}
+                        >{frontmatter.image.author.name}</a
+                    > on <a href={frontmatter.image.site.url}>
+                        {frontmatter.image.site.name}</a
+                    >
+                </em>
             </p>
         </div>
         <div>
